@@ -36,6 +36,19 @@ class ShowDogWalkingStore {
         console.log(error)
       })
   }
+
+  finishDogWalking () {
+    const { id } = this.state.dogWalking
+    const url = `http://localhost:3000/dog_walkings/${id}/finish_walk`
+    axios.post(url)
+      .then(response => {
+        console.log(response)
+        this.fetchDogWalking(id)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 }
 
 decorate(ShowDogWalkingStore, {

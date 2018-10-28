@@ -23,7 +23,7 @@ const ShowDogWalkingIndex = inject('showDogWalkingStore')(observer(
           <Box>
             <Title>Dog Walking - {this.props.match.params.id}</Title>
             <Button text='Iniciar' onClick={() => showDogWalkingStore.startDogWalking()} />
-            <Button text='Encerrar' />
+            <Button text='Encerrar' onClick={() => showDogWalkingStore.finishDogWalking()} />
             <Loader isLoading={isFetching}>
               <DogWalkingInfo />
             </Loader>

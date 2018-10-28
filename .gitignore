@@ -22,3 +22,6 @@ yarn-error.log*
 
 # VS code settings
 /.vscode
+
+# Sass cache
+/.sass-cache

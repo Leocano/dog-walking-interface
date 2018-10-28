@@ -1,12 +1,12 @@
 import React from 'react'
 
-import MainContent from '../../generic/MainContent/MainContent'
+import Container from '../../generic/Container/Container'
 
 const DogWalkingsIndex = props => {
   return (
-    <MainContent>
+    <Container>
       Hello
-    </MainContent>
+    </Container>
   )
 }
 

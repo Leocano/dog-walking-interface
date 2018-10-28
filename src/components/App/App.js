@@ -1,11 +1,17 @@
 import React from 'react'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 import './App.css'
 
-import MainContent from '../generic/MainContent/MainContent'
+import DogWalkingsIndex from '../dogWalkings/DogWalkingsIndex'
 
 const App = props => {
-  return <MainContent>Hello World!</MainContent>
+  return (
+    <Switch>
+      <Route path='/' exact component={DogWalkingsIndex} />
+      <Route render={() => <div>404</div>} />
+    </Switch>
+  )
 }
 
 export default App

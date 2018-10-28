@@ -1,0 +1,19 @@
+.app-button-toggle {
+  background: #ef3a5d;
+  color: #fff;
+  border: 1px solid #ef3a5d; }
+  .app-button-toggle:hover {
+    background: #ef3a5d;
+    color: #fff;
+    border: 1px solid #ef3a5d; }
+  .app-button-toggle:focus {
+    background: #ef3a5d;
+    color: #fff;
+    border: 1px solid #ef3a5d; }
+
+.app-button-toggle.is-outlined {
+  background: transparent;
+  color: #ef3a5d;
+  border: 1px solid #ef3a5d; }
+
+/*# sourceMappingURL=ButtonToggle.css.map */

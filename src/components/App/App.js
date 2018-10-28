@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 
 import './App.css'
 
-import DogWalkingsIndex from '../dogWalkings/DogWalkingsIndex'
+import DogWalkingsIndex from '../dogWalkings/DogWalkingsIndex/DogWalkingsIndex'
 
 const App = props => {
   return (

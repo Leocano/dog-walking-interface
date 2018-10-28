@@ -1,9 +1,11 @@
 import DogWalkingsStore from './dogWalkingsStore'
+import ShowDogWalkingStore from './showDogWalkingStore';
 
 class RootStore {
   constructor () {
     this.stores = {
-      dogWalkingsStore: new DogWalkingsStore()
+      dogWalkingsStore: new DogWalkingsStore(),
+      showDogWalkingStore: new ShowDogWalkingStore()
     }
   }
 }

@@ -14,7 +14,7 @@ const DogWalkingInfo = inject('showDogWalkingStore')(observer(props => {
 
   return (
     <div className='app-dog-walking-info'>
-      <Columns>
+      <Columns isMultiline>
         <Column>
           <Title size={3}>Status</Title>
           <span className='info-highlight'>{dogWalking.dog_walking_status.description}</span>
@@ -23,6 +23,12 @@ const DogWalkingInfo = inject('showDogWalkingStore')(observer(props => {
           <Title size={3}>Duração Real</Title>
           <span className='info-highlight'>
             {`${duration.toLocaleTimeString()}`}
+          </span>
+        </Column>
+        <Column>
+          <Title size={3}>Agendado para</Title>
+          <span className='info-highlight'>
+            {`${new Date(dogWalking.scheduled_date).toLocaleDateString('pt-br')}`}
           </span>
         </Column>
         <Column>

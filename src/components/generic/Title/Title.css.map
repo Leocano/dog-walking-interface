@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UAAW;EACP,WAAW,EAAE,GAAG",
+"sources": ["Title.scss"],
+"names": [],
+"file": "Title.css"
+}

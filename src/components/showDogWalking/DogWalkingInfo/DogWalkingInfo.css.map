@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,qBAAsB;EAClB,WAAW,EAAE,IAAI;EAEjB,qCAAgB;IACZ,KAAK,ECLG,OAAO",
+"sources": ["DogWalkingInfo.scss","../../../utils/_variables.scss"],
+"names": [],
+"file": "DogWalkingInfo.css"
+}

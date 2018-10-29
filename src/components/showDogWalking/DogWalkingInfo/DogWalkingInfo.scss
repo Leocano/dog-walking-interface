@@ -1,0 +1,9 @@
+@import '../../../utils/variables';
+
+.app-dog-walking-info {
+    padding-top: 60px;
+
+    .info-highlight {
+        color: $primary-color
+    }
+}

@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(props => {
   const { newDogWalkingStore, petsStore } = props
-  const { scheduledDate, duration } = newDogWalkingStore.state
+  const { scheduledDate, duration } = newDogWalkingStore.state.newDogWalking
   const selectedPets = newDogWalkingStore.state.pets
   const { pets } = petsStore.state
   return (
@@ -22,7 +22,9 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
             selected={scheduledDate}
             className='input'
             onChange={(value) => newDogWalkingStore.setScheduledDate(value)}
-            locale='en-gb'
+            timeFormat='HH:mm'
+            dateFormat='DD/MM/YYYY HH:mm'
+            showTimeSelect
           />
         </div>
       </div>
@@ -51,9 +53,18 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
             isMulti
             value={selectedPets}
             options={pets.map(pet => {
-              return {value: pet.name, label: pet.name}
+              return {value: pet.id, label: pet.name}
             })}
+            onChange={pets => newDogWalkingStore.setPets(pets)}
           />
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">
+          Preço
+        </label>
+        <div className="control">
+          <input className='input' value={newDogWalkingStore.price} readOnly />
         </div>
       </div>
     </form>

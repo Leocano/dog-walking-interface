@@ -6,6 +6,7 @@ import Box from '../../generic/Box/Box'
 import Title from '../../generic/Title/Title'
 import Columns from '../../generic/Columns/Columns'
 import Column from '../../generic/Column/Column'
+import NewDogWalkingForm from '../NewDogWalkingForm/NewDogWalkingForm'
 
 const NewDogWalkingIndex = props => {
   return (
@@ -19,6 +20,7 @@ const NewDogWalkingIndex = props => {
             <Link to='/' className='button'>Voltar</Link>
           </Column>
         </Columns>
+        <NewDogWalkingForm />
       </Box>
     </Container>
   )

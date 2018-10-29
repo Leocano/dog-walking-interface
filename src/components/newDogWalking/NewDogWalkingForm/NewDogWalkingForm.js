@@ -2,12 +2,15 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 
 import DatePicker from 'react-datepicker'
+import Select from 'react-select'
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-const NewDogWalkingForm = inject('newDogWalkingStore')(observer(props => {
-  const { newDogWalkingStore } = props
+const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(props => {
+  const { newDogWalkingStore, petsStore } = props
   const { scheduledDate, duration } = newDogWalkingStore.state
+  const selectedPets = newDogWalkingStore.state.pets
+  const { pets } = petsStore.state
   return (
     <form>
       <div className="field">
@@ -44,7 +47,13 @@ const NewDogWalkingForm = inject('newDogWalkingStore')(observer(props => {
           Pets
         </label>
         <div className="control">
-        
+          <Select 
+            isMulti
+            value={selectedPets}
+            options={pets.map(pet => {
+              return {value: pet.name, label: pet.name}
+            })}
+          />
         </div>
       </div>
     </form>

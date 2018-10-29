@@ -5,7 +5,8 @@ class NewDogWalkingStore {
     this.state = {
       newDogWalking: {
         scheduledDate: '',
-        duration: '30'
+        duration: '30',
+        pets: []
       }
     }
   }
@@ -16,6 +17,10 @@ class NewDogWalkingStore {
 
   setDuration (duration) {
     this.state.duration = duration
+  }
+
+  setPets (pets) {
+    
   }
 }
 

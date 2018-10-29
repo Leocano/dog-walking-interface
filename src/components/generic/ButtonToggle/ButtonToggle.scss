@@ -6,13 +6,13 @@
     border: 1px solid $primary-color;
 
     &:hover {
-        background: $primary-color;
+        background: lighten($primary-color, 5%);
         color: #fff;
         border: 1px solid $primary-color;
     }
 
     &:focus {
-        background: $primary-color;
+        background: darken($primary-color, 5%);
         color: #fff;
         border: 1px solid $primary-color;
     }

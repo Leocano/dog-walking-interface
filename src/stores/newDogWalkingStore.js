@@ -6,18 +6,17 @@ class NewDogWalkingStore {
     this.state = {
       newDogWalking: {
         scheduledDate: moment().startOf('day'),
-        duration: '30',
+        duration: 30,
         pets: []
       }
     }
   }
 
   get price () {
-    if (this.state.duration === 30) {
-      return 25 + ((this.state.newDogWalking.pets.length - 1) * 15)
-    } else {
-      return 35 + ((this.state.newDogWalking.pets.length - 1) * 25)
+    if (this.state.newDogWalking.duration == 30) {
+      return 25 + (Math.max(0,(this.state.newDogWalking.pets.length - 1)) * 15)
     }
+    return 35 + (Math.max(0,(this.state.newDogWalking.pets.length - 1)) * 25)
   }
 
   setScheduledDate (scheduledDate) {
@@ -29,13 +28,12 @@ class NewDogWalkingStore {
   }
 
   setPets (pets) {
-    this.pets = pets
+    this.state.newDogWalking.pets = pets
   }
 }
 
 decorate(NewDogWalkingStore, {
-  state: observable,
-  price: computed
+  state: observable
 })
 
 export default NewDogWalkingStore

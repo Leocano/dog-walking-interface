@@ -1,8 +1,9 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-
 import DatePicker from 'react-datepicker'
 import Select from 'react-select'
+
+import LocationInput from '../../generic/LocationInput/LocationInput'
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -65,6 +66,14 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
         </label>
         <div className="control">
           <input className='input' value={newDogWalkingStore.price} readOnly />
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">
+          Local
+        </label>
+        <div className="control">
+          <LocationInput />
         </div>
       </div>
     </form>

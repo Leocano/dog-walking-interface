@@ -5,12 +5,14 @@ import Select from 'react-select'
 import { getLatLng } from 'react-places-autocomplete';
 
 import LocationInput from '../../generic/LocationInput/LocationInput'
+import Button from '../../generic/Button/Button'
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(props => {
   const { newDogWalkingStore, petsStore } = props
-  const { scheduledDate, duration, location } = newDogWalkingStore.state.newDogWalking
+  const { isCreating, newDogWalking } = newDogWalkingStore.state
+  const { scheduledDate, duration, location } = newDogWalking
   const selectedPets = newDogWalkingStore.state.pets
   const { pets } = petsStore.state
   return (
@@ -77,7 +79,6 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
           <LocationInput
             value={location}
             handleChange={value => newDogWalkingStore.setLocation(value)}
-            // handleSelectCallback={latLng => newDogWalkingStore.setLatLng(latLng)}
             handleSelectCallback={address => {
               getLatLng(address)
                 .then(latLng => {
@@ -85,6 +86,15 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
                   newDogWalkingStore.setLocation(address.formatted_address)
                 })
             }}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <div className="control">
+          <Button 
+            text='Criar'
+            onClick={(event) => newDogWalkingStore.createDogWalking(event)}
+            isLoading={isCreating}
           />
         </div>
       </div>

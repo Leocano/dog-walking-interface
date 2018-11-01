@@ -17,6 +17,7 @@ class ShowDogWalkingStore {
         console.log(response)
         this.state.dogWalking = response.data
         this.state.isFetching = false
+        console.log(response.data)
       })
       .catch(error => {
         console.log(error)

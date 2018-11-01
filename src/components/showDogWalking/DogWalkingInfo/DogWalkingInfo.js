@@ -34,13 +34,13 @@ const DogWalkingInfo = inject('showDogWalkingStore')(observer(props => {
         <Column>
           <Title size={3}>Início</Title>
           <span className='info-highlight'>
-            {new Date(dogWalking.start_time).toLocaleString('pt-br') || 'Não iniciado'}
+            {dogWalking.start_time && new Date(dogWalking.start_time).toLocaleString('pt-br') || 'Não iniciado'}
           </span>
         </Column>
         <Column>
           <Title size={3}>Fim</Title>
           <span className='info-highlight'>
-            {new Date(dogWalking.finish_time).toLocaleString('pt-br') || 'Não finalizado'}
+            {dogWalking.finish_time && new Date(dogWalking.finish_time).toLocaleString('pt-br') || 'Não finalizado'}
           </span>
         </Column>
         <Column>

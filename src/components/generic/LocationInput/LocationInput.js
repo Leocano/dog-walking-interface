@@ -1,39 +1,37 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
+import './LocationInput.css'
+
 class LocationInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {address: ''};
   }
-
-  handleChange = address => {
-    this.setState({ address });
-  };
 
   handleSelect = address => {
     geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error));
+    .then(results => this.props.handleSelectCallback(results[0]))
+      // .then(results => getLatLng(results[0]))
+      // .then(latLng => this.props.handleSelectCallback(latLng))
+      // .catch(error => console.error('Error', error));
   };
 
   render() {
     return (
       <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
+        value={this.props.value}
+        onChange={this.props.handleChange}
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
+                placeholder: 'Digite um local',
+                className: 'input',
               })}
             />
-            <div className="autocomplete-dropdown-container">
+            <div className="app-location-dropdown">
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
                 const className = suggestion.active

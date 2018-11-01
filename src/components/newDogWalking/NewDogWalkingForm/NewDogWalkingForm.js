@@ -2,6 +2,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import DatePicker from 'react-datepicker'
 import Select from 'react-select'
+import { getLatLng } from 'react-places-autocomplete';
 
 import LocationInput from '../../generic/LocationInput/LocationInput'
 
@@ -9,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(props => {
   const { newDogWalkingStore, petsStore } = props
-  const { scheduledDate, duration } = newDogWalkingStore.state.newDogWalking
+  const { scheduledDate, duration, location } = newDogWalkingStore.state.newDogWalking
   const selectedPets = newDogWalkingStore.state.pets
   const { pets } = petsStore.state
   return (
@@ -73,7 +74,18 @@ const NewDogWalkingForm = inject('newDogWalkingStore', 'petsStore')(observer(pro
           Local
         </label>
         <div className="control">
-          <LocationInput />
+          <LocationInput
+            value={location}
+            handleChange={value => newDogWalkingStore.setLocation(value)}
+            // handleSelectCallback={latLng => newDogWalkingStore.setLatLng(latLng)}
+            handleSelectCallback={address => {
+              getLatLng(address)
+                .then(latLng => {
+                  newDogWalkingStore.setLatLng(latLng)
+                  newDogWalkingStore.setLocation(address.formatted_address)
+                })
+            }}
+          />
         </div>
       </div>
     </form>

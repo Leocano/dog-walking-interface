@@ -7,7 +7,10 @@ class NewDogWalkingStore {
       newDogWalking: {
         scheduledDate: moment().startOf('day'),
         duration: 30,
-        pets: []
+        pets: [],
+        location: '',
+        lat: '',
+        lng: ''
       }
     }
   }
@@ -29,6 +32,15 @@ class NewDogWalkingStore {
 
   setPets (pets) {
     this.state.newDogWalking.pets = pets
+  }
+
+  setLocation (location) {
+    this.state.newDogWalking.location = location
+  }
+
+  setLatLng (latLng) {
+    this.state.newDogWalking.lat = latLng.lat
+    this.state.newDogWalking.lng = latLng.lng
   }
 }
 

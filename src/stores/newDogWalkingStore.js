@@ -1,5 +1,6 @@
 import { observable, action, decorate, computed } from 'mobx'
 import moment from 'moment'
+import axios from 'axios';
 
 class NewDogWalkingStore {
   constructor () {
@@ -7,17 +8,20 @@ class NewDogWalkingStore {
       newDogWalking: {
         scheduledDate: moment().startOf('day'),
         duration: '30',
-        pets: []
-      }
+        pets: [],
+        location: '',
+        lat: '',
+        lng: '',
+      },
+      isCreating: false
     }
   }
 
   get price () {
-    if (this.state.duration === 30) {
-      return 25 + ((this.state.newDogWalking.pets.length - 1) * 15)
-    } else {
-      return 35 + ((this.state.newDogWalking.pets.length - 1) * 25)
+    if (this.state.newDogWalking.duration === '30') {
+      return 25 + (Math.max(0,(this.state.newDogWalking.pets.length - 1)) * 15)
     }
+    return 35 + (Math.max(0,(this.state.newDogWalking.pets.length - 1)) * 25)
   }
 
   setScheduledDate (scheduledDate) {
@@ -29,13 +33,48 @@ class NewDogWalkingStore {
   }
 
   setPets (pets) {
-    this.pets = pets
+    this.state.newDogWalking.pets = pets
+  }
+
+  setLocation (location) {
+    this.state.newDogWalking.location = location
+  }
+
+  setLatLng (latLng) {
+    this.state.newDogWalking.lat = latLng.lat
+    this.state.newDogWalking.lng = latLng.lng
+  }
+
+  createDogWalking (event) {
+    event.preventDefault()
+    this.state.isCreating = true
+    const url = 'http://localhost:3000/dog_walkings'
+    const { scheduledDate, duration, lat, lng, pets } = this.state.newDogWalking
+    axios.post(url, {
+      dog_walking: {
+        scheduled_date: scheduledDate.format(),
+        price: this.price,
+        duration: duration,
+        latitude: lat,
+        longitude: lng,
+        start_time: null,
+        finish_time: null
+      },
+      pet_ids: pets.map(pet => pet.id)
+    })
+    .then(response => {
+      console.log(response)
+      this.state.isCreating = false
+    })
+    .catch(error => {
+      console.log(error)
+      this.state.isCreating = false
+    })
   }
 }
 
 decorate(NewDogWalkingStore, {
-  state: observable,
-  price: computed
+  state: observable
 })
 
 export default NewDogWalkingStore
